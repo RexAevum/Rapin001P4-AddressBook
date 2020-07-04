@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 class Contact: NSObject{
-    private var firstName:String
-    private var lastName:String
-    private var email:String?
-    private var address:String?
-    private var phoneNumber:String?
-    private var birthDate:Date?
+    var firstName:String
+    var lastName:String
+    var email:String?
+    var address:String?
+    var phoneNumber:String?
+    var birthDate:Date?
     
     init(firstName: String, lastName: String, email: String, address: String, phoneNumber: String, bDate: Date) {
         self.firstName = firstName
@@ -37,23 +37,4 @@ class Contact: NSObject{
     }
     
     
-    //getters
-    func getFirstName() -> String {
-        return firstName
-    }
-    func getLastName() -> String {
-        return lastName
-    }
-    func getEmail() -> String {
-        return email ?? "Add Email"
-    }
-    func getAddress() -> String {
-        return address ?? "Add Address"
-    }
-    func getPhoneNumber() -> String {
-        return phoneNumber ?? "Add Number"
-    }
-    func getBirthDate() -> Date {
-        return birthDate!
-    }
 }

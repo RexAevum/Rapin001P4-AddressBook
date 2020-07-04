@@ -19,8 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let contacts = ContactDB()
         
-        let contactController = window!.rootViewController as! TableViewController
+        // set the root view controller as whatever class is the inital controller
+        let navigationController = window!.rootViewController as! UINavigationController
        
+        // set the initial top view controller to be linked with the navigation controller 
+        let contactController = navigationController.topViewController as! TableViewController
         contactController.contactDB = contacts
         
         return true

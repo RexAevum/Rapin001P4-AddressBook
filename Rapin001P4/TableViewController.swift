@@ -39,27 +39,27 @@ class TableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
+       // tableView.reloadData()
     }
 
     // MARK: - Table view data source
-
+    // displays the designated number of
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    // handles how many cells need to be created
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return contactDB.allContacts.count
     }
 
-    
+    // handles what each cell will print
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
         
         let name = contactDB.allContacts[indexPath.row]
-        let printName = name.getFirstName() + "\t" + name.getLastName()
+        let printName = name.firstName + "\t" + name.lastName
         print(printName)
         cell.textLabel?.text = printName
 
@@ -83,6 +83,7 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
  
+    // when you press edit, table view goes into editing mode, when you press done it exits editing mode
     @IBAction func toggelEditingMode(_ sender: UIButton) {
         //update button based on if is editing
         if isEditing{
@@ -103,15 +104,47 @@ class TableViewController: UITableViewController {
     }
     */
 
+    // function that allows for you to change 
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Bye!"
+    }
+    
     
     // Override to support editing the table view.
+    //actualy enables the editing and what it can do
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            //get the contact to be deleted
             let contactToDelete = contactDB.allContacts[indexPath.row]
-            contactDB.deleteContact(item: contactToDelete)
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            //set up an alert to make sure the user wants to delete the contact
+            let title = "Delete Contact"
+            let message = "Are you sure you want to delet \(contactToDelete.firstName) \(contactToDelete.lastName)"
+            //create the alert (.alert or .actionSheet)
+            let alertControllerDelete = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            
+            //add actions to the the allert
+            // style affects the way the button text is displayed
+            //handler is the action that happens when the option is selected form the UIAlertController
+            let acCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertControllerDelete.addAction(acCancel)
+            
+            //add action to delete the item from collection and delete the row
+            //the handler gets a closure that deletes the contact and row
+            // {(action) -> Void in //delete lines, calls with self becasue closure
+            let acDelete = UIAlertAction(title: "Delete For Ever", style: .destructive, handler: {(action) -> Void in
+                // in closures need to add self. in front of all the calls
+                self.contactDB.deleteContact(item: contactToDelete)
+                
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            })
+            alertControllerDelete.addAction(acDelete)
+            
+            //need to presetn the alert after creating it, otherwise will just do logic without displaying anything or allowing for input
+            
+            present(alertControllerDelete, animated: true, completion: nil)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -120,27 +153,48 @@ class TableViewController: UITableViewController {
 
     
     // Override to support rearranging the table view.
+    // allows you to move the objects around in the array in an interactive way
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        contactDB.moveContact(from: fromIndexPath.row, to: to.row)
+            contactDB.moveContact(from: fromIndexPath.row, to: to.row)
+        
     }
  
 
     /*
     // Override to support conditional rearranging of the table view.
+    // can make some rows unable to be moved
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return true
+        if (indexPath.row == contactDB.allContacts.count-1){
+            return false
+        }
+        else{
+            return true
+        }
     }
-     */
+    */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        switch segue.identifier {
+        case "showContactDetails"?:
+            if let index = tableView.indexPathForSelectedRow?.row{
+            
+            let selectedContact = contactDB.allContacts[index]
+            let detailView = segue.destination as! DetailedViewController
+                
+            detailView.detailedContact = selectedContact
+            }
+        default:
+            preconditionFailure("Unknown Segue")
+        }
     }
-    */
+    
 
 }
