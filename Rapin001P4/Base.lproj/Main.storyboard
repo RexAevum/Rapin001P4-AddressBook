@@ -68,7 +68,7 @@
                     <navigationItem key="navigationItem" id="dma-HJ-eCX">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Gxj-Gk-nbU">
                             <connections>
-                                <action selector="addNewContact:" destination="JmZ-yd-Qhl" id="v9V-vR-ESW"/>
+                                <action selector="addNewContact:" destination="JmZ-yd-Qhl" id="8G1-5O-gXw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

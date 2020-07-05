@@ -18,9 +18,7 @@ class TableViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = editButtonItem
     }
-    @IBAction func addNewContact(_ sender: UIBarButtonItem) {
-        
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
