@@ -15,6 +15,11 @@ class TableViewController: UITableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+    @IBAction func addNewContact(_ sender: UIBarButtonItem) {
+        
     }
     
     override func viewDidLoad() {
@@ -28,18 +33,21 @@ class TableViewController: UITableViewController {
          //self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         //account for the status bar
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+       // let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
         // insets acan be created and then other elements of the the tableView can follow the same insets
-        let inset = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = inset
-        tableView.scrollIndicatorInsets = inset
+        /*
+            let inset = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+            tableView.contentInset = inset
+            tableView.scrollIndicatorInsets = inset
+        */
+        navigationItem.title = "Contacts"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-       // tableView.reloadData()
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -83,7 +91,9 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
  
+    /*
     // when you press edit, table view goes into editing mode, when you press done it exits editing mode
+    // not needed when using navigation controll with editButtonItem
     @IBAction func toggelEditingMode(_ sender: UIButton) {
         //update button based on if is editing
         if isEditing{
@@ -95,6 +105,7 @@ class TableViewController: UITableViewController {
             setEditing(true, animated: true)
         }
     }
+    */
     
     /*
     // Override to support conditional editing of the table view.
