@@ -16,6 +16,7 @@ class Contact: NSObject{
     var address:String?
     var phoneNumber:String?
     var birthDate:Date?
+    var imageKey: String?
     
     init(firstName: String, lastName: String, email: String, address: String, phoneNumber: String, bDate: Date) {
         self.firstName = firstName
@@ -24,6 +25,7 @@ class Contact: NSObject{
         self.address = address
         self.phoneNumber = phoneNumber
         self.birthDate = bDate
+        self.imageKey = UUID().uuidString // creates a uniqe ID as a string
         super.init()
     }
     // make a convenience init as requered - will use only first, last

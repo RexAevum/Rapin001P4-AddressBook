@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let contacts = ContactDB()
+        let images = ImageDB()
         
         // set the root view controller as whatever class is the inital controller
         let navigationController = window!.rootViewController as! UINavigationController
@@ -25,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // set the initial top view controller to be linked with the navigation controller 
         let contactController = navigationController.topViewController as! TableViewController
         contactController.contactDB = contacts
+        contactController.imageDB = images
         
         return true
     }

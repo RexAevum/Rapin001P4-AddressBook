@@ -10,11 +10,15 @@ import UIKit
 
 class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    // variables for needed objects - contact and images
     var detailedContact: Contact!{
+        // did set will run code once the variable is modefied
         didSet{
             navigationItem.title = detailedContact.firstName + " " + detailedContact.lastName
         }
     }
+    
+    var imageDB: ImageDB!
     
     
     @IBOutlet var firstNameField: UITextField!
@@ -62,6 +66,11 @@ class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigatio
         super.viewDidAppear(animated)
         
         
+        //set image
+        
+        userPhoto.image = imageDB.returnImage(forKey: detailedContact.imageKey!)
+        
+        // populate teh text fields
         if (detailedContact.firstName != "First Name"){
              firstNameField.text = detailedContact.firstName
         }else{
@@ -159,6 +168,7 @@ class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigatio
         //set the imageView as the selected image
         
         userPhoto.image = image
+        imageDB.setImage(image, forKey: detailedContact.imageKey!)
         
         // need to dismiss once an image has been seleted
         

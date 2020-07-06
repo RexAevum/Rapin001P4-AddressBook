@@ -10,6 +10,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
     var contactDB: ContactDB!
+    var imageDB: ImageDB!
     
 
     
@@ -144,8 +145,8 @@ class TableViewController: UITableViewController {
             // {(action) -> Void in //delete lines, calls with self becasue closure
             let acDelete = UIAlertAction(title: "Delete For Ever", style: .destructive, handler: {(action) -> Void in
                 // in closures need to add self. in front of all the calls
+                self.imageDB.deleteImage(forKey: contactToDelete.imageKey!)
                 self.contactDB.deleteContact(item: contactToDelete)
-                
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             })
             alertControllerDelete.addAction(acDelete)
@@ -199,6 +200,7 @@ class TableViewController: UITableViewController {
             let detailView = segue.destination as! DetailedViewController
                 
             detailView.detailedContact = selectedContact
+            detailView.imageDB = imageDB
             }
         default:
             preconditionFailure("Unknown Segue")
