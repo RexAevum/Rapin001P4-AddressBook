@@ -15,6 +15,7 @@
 		C2BF728524AD632F00BBB707 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BF728424AD632F00BBB707 /* Contact.swift */; };
 		C2BF728724AD678400BBB707 /* ContactDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BF728624AD678400BBB707 /* ContactDB.swift */; };
 		C2BF728924ADA9CE00BBB707 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BF728824ADA9CE00BBB707 /* TableViewController.swift */; };
+		C2BF728D24B29DBA00BBB707 /* ImageDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BF728C24B29DBA00BBB707 /* ImageDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C2BF728424AD632F00BBB707 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		C2BF728624AD678400BBB707 /* ContactDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDB.swift; sourceTree = "<group>"; };
 		C2BF728824ADA9CE00BBB707 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		C2BF728C24B29DBA00BBB707 /* ImageDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				C2BF727624AD033F00BBB707 /* Main.storyboard */,
 				C2BF728824ADA9CE00BBB707 /* TableViewController.swift */,
 				C2BF728424AD632F00BBB707 /* Contact.swift */,
+				C2BF728C24B29DBA00BBB707 /* ImageDB.swift */,
 				C2BF728624AD678400BBB707 /* ContactDB.swift */,
 				C2BF727924AD033F00BBB707 /* Assets.xcassets */,
 				C2BF727B24AD033F00BBB707 /* LaunchScreen.storyboard */,
@@ -150,6 +153,7 @@
 				C2BF727524AD033F00BBB707 /* DetailedViewController.swift in Sources */,
 				C2BF728924ADA9CE00BBB707 /* TableViewController.swift in Sources */,
 				C2BF727324AD033F00BBB707 /* AppDelegate.swift in Sources */,
+				C2BF728D24B29DBA00BBB707 /* ImageDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

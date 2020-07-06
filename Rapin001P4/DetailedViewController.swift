@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailedViewController: UIViewController, UITextFieldDelegate {
+class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var detailedContact: Contact!{
         didSet{
@@ -24,6 +24,7 @@ class DetailedViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var phoneNumberField: UITextField!
     @IBOutlet var birthDateField: UITextField!
     
+    @IBOutlet var userPhoto: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,6 +129,41 @@ class DetailedViewController: UIViewController, UITextFieldDelegate {
         
         
     }
- 
+    
+    //----------------------------------------------------------
+    // image handeling
+    @IBAction func takePicture(_ sender: UIBarButtonItem) {
+        
+        let imagePicker = UIImagePickerController()
+        
+        // select source type
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            imagePicker.sourceType = .camera
+        }else{
+            imagePicker.sourceType = .photoLibrary
+        }
+        
+        // have to import both UINavigationControllerDelegate and UIImagePickerControllerDelegate
+        imagePicker.delegate = self
+        
+        //by calling present you are moving a view to be displayed, transition between views
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // returns image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // get image
+        
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //set the imageView as the selected image
+        
+        userPhoto.image = image
+        
+        // need to dismiss once an image has been seleted
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
