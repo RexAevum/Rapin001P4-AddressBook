@@ -1,10 +1,9 @@
-//
-//  TableViewController.swift
-//  Rapin001P4
-//
-//  Created by Rolans Apinis on 7/2/20.
-//  Copyright © 2020 Rolans Apinis. All rights reserved.
-//
+//  PROGRAMMER: Rolans Apinis
+//  PANTHERID: 6044121
+//  CLASS: COP 465501 TR 5:00
+//  INSTRUCTOR: Steve Luis ECS 282
+//  ASSIGNMENT: Programming Assignment #4
+//  DUE: Thursday 07/05/2020 //
 
 import UIKit
 
@@ -73,7 +72,8 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    //add new contact buton
+    /*
+    //add new contact buton - is later done by segue
     @IBAction func addNewContact(_ sender: Any) {
         //create new contact
         let new = contactDB.createNew(firstName: nil, lastName: nil)
@@ -89,6 +89,7 @@ class TableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
+ */
  
     /*
     // when you press edit, table view goes into editing mode, when you press done it exits editing mode
@@ -202,6 +203,15 @@ class TableViewController: UITableViewController {
             detailView.detailedContact = selectedContact
             detailView.imageDB = imageDB
             }
+        case "addNew"?:
+            let new = Contact(firstName: nil, lastName: nil)
+            contactDB.allContacts.append(new)
+            
+            let detailView = segue.destination as! DetailedViewController
+            
+            detailView.detailedContact = new
+            detailView.imageDB = imageDB
+            
         default:
             preconditionFailure("Unknown Segue")
         }

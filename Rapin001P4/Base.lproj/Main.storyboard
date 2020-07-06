@@ -67,6 +67,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Gxj-Gk-nbU">
                             <connections>
                                 <action selector="addNewContact:" destination="JmZ-yd-Qhl" id="8G1-5O-gXw"/>
+                                <segue destination="TNG-kx-aur" kind="show" identifier="addNew" id="dWC-yf-PGm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -231,6 +232,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
+                                                    <action selector="selectBirthDate:" destination="TNG-kx-aur" eventType="touchUpInside" id="GIF-PN-iWo"/>
                                                     <outlet property="delegate" destination="TNG-kx-aur" id="B6u-1X-ctb"/>
                                                 </connections>
                                             </textField>
@@ -285,4 +287,7 @@
             <point key="canvasLocation" x="424.80000000000001" y="-105.69715142428787"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="dWC-yf-PGm"/>
+    </inferredMetricsTieBreakers>
 </document>

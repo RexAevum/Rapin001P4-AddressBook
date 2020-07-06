@@ -1,10 +1,9 @@
-//
-//  ViewController.swift
-//  Rapin001P4
-//
-//  Created by Rolans Apinis on 7/1/20.
-//  Copyright © 2020 Rolans Apinis. All rights reserved.
-//
+//  PROGRAMMER: Rolans Apinis
+//  PANTHERID: 6044121
+//  CLASS: COP 465501 TR 5:00
+//  INSTRUCTOR: Steve Luis ECS 282
+//  ASSIGNMENT: Programming Assignment #4
+//  DUE: Thursday 07/05/2020 //
 
 import UIKit
 
@@ -27,12 +26,32 @@ class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet var addressField: UITextField!
     @IBOutlet var phoneNumberField: UITextField!
     @IBOutlet var birthDateField: UITextField!
+    @objc var localDatePicker: UIDatePicker!
     
     @IBOutlet var userPhoto: UIImageView!
     
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // add date picker to view when it initaly loads
+        localDatePicker = UIDatePicker()
+        localDatePicker.datePickerMode = .date
+        
+        //add toolbar to keyboard
+        let tool = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(DetailedViewController.exitInput))
+        let x = [doneButton]
+        
+        tool.items = x
+        tool.sizeToFit()
+        
+        //set views for date picker
+        birthDateField.inputView = localDatePicker
+        birthDateField.inputAccessoryView = tool
+       
+        
+        localDatePicker.addTarget(self, action: #selector(DetailedViewController.getDate(x:)), for: .valueChanged)
         
         //set keyboards
         emailField.keyboardType = .emailAddress
@@ -46,10 +65,27 @@ class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigatio
         phoneNumberField.clearButtonMode = .whileEditing
         
         //disable date field for now
-        birthDateField.isUserInteractionEnabled = false
+        //birthDateField.isUserInteractionEnabled = false
     
     }
     
+    //MARK: Date Picker
+    @objc func getDate(x: UIDatePicker) -> Void{
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM/dd/yyyy"
+        
+        let newDate = dateFormat.string(from: x.date)
+        birthDateField.text = newDate
+        detailedContact.birthDate = x.date
+        //self.view.endEditing(true)
+    }
+    
+    @objc func exitInput(){
+        self.resignFirstResponder()
+        self.view.endEditing(true)
+    }
+  
+    //MARK: Text Field Delegates
     // what to do when user presses return on the keyboard during editing
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -60,8 +96,9 @@ class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigatio
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
     }
-
     
+
+    //MARK: Setting up View
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -102,8 +139,7 @@ class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigatio
         }
         
         let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .medium
-        dateFormatter.dateStyle = .long
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         
         birthDateField.text = dateFormatter.string(from: detailedContact.birthDate!)
     }
@@ -133,14 +169,16 @@ class DetailedViewController: UIViewController, UITextFieldDelegate, UINavigatio
             detailedContact.address = addressField.text!}
         if(phoneNumberField.text != ""){
             detailedContact.phoneNumber = phoneNumberField.text!}
-        if(birthDateField != nil){
-            detailedContact.birthDate = Date()}
+        if(birthDateField.text != ""){
+            detailedContact.birthDate = localDatePicker.date}
         
         
     }
+
+    
     
     //----------------------------------------------------------
-    // image handeling
+    //MARK: Image Handeling
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
         
         let imagePicker = UIImagePickerController()

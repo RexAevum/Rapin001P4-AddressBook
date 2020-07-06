@@ -1,10 +1,9 @@
-//
-//  Contact.swift
-//  Rapin001P4
-//
-//  Created by Rolans Apinis on 7/1/20.
-//  Copyright © 2020 Rolans Apinis. All rights reserved.
-//
+//  PROGRAMMER: Rolans Apinis
+//  PANTHERID: 6044121
+//  CLASS: COP 465501 TR 5:00
+//  INSTRUCTOR: Steve Luis ECS 282
+//  ASSIGNMENT: Programming Assignment #4
+//  DUE: Thursday 07/05/2020 //
 
 import Foundation
 import UIKit
