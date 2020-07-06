@@ -16,6 +16,13 @@ class ContactDB{
         createNew(firstName: "C", lastName: "C")
         createNew(firstName: "Faust", lastName: "D")
         createNew(firstName: "Foot", lastName: "Man")
+        createNew(firstName: "Jim", lastName: "Hook")
+        createNew(firstName: "Mich", lastName: "PartyBoy")
+        createNew(firstName: "Apple", lastName: "Apple")
+        createNew(firstName: "Hello", lastName: "world")
+        createNew(firstName: "Face", lastName: "Hurt")
+        createNew(firstName: "Ann", lastName: "Jumper")
+        createNew(firstName: "Scot", lastName: "Baby")
     }
 
     //discardable result let's the returned value be ignored; do not need to asighn to variable
